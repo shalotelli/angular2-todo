@@ -16,4 +16,8 @@ export class ListService {
     this.items.splice(index, 1);
   }
 
+  toggleDone(index: number) {
+    this.items[index].done =! this.items[index].done;
+  }
+
 }

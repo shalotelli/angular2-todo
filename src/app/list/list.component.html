@@ -1,7 +1,14 @@
-<ul>
-  <li *ngFor="let item of list.items; let i = index">
-    {{item.title}}
+<div class="row">
+<div class="list-group col-sm-8 col-sm-offset-2">
+  <button class="list-group-item" 
+    *ngFor="let item of list.items; let i = index" 
+    (click)="list.toggleDone(i)"
+    [ngClass]="{'active': item.done}">
+    <button (click)="list.deleteItem(i)" class="badge">
+      <i class="glyphicon glyphicon-remove"></i>
+    </button>
+    <h4>{{item.title}}</h4>
     <small>Due {{item.dueDate | date}}</small>
-    <button (click)="list.deleteItem(i)">&times;</button>
-  </li>
-</ul>
+  </button>
+</div>
+</div>
