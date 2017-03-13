@@ -10,6 +10,7 @@ export class ListService {
 
   addItem(item: Item) {
     this.items.push(item);
+    this.sort();
   }
 
   deleteItem(index: number) {
@@ -18,6 +19,17 @@ export class ListService {
 
   toggleDone(index: number) {
     this.items[index].done =! this.items[index].done;
+    this.sort();
+  }
+
+  sort() {
+    this.items
+      .sort((a: Item, b: Item) => {
+        return a.dueDate.valueOf() - b.dueDate.valueOf();
+      })
+      .sort((a: Item, b: Item) => {
+        return (a.done === b.done ? 0 : (a.done ? 1 : -1));
+      });
   }
 
 }
